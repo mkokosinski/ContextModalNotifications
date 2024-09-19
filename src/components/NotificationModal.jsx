@@ -7,9 +7,12 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { useDispatch, useSelector } from "react-redux";
+import { removeNotification } from "../store/slices/notificationSlice";
 
 const NotificationModal = ({ onClose }) => {
-  const { notifications, removeNotification } = useNotificationContext();
+  const notifications = useSelector(selectNotifications);
+  const dispatch = useDispatch();
 
   return (
     <Modal open onClose={onClose}>
@@ -33,7 +36,7 @@ const NotificationModal = ({ onClose }) => {
                 secondary={new Date(notification.timestamp).toLocaleString()}
               />
               <Button
-                onClick={() => removeNotification(index)}
+                onClick={() => dispatch(removeNotification(index))} // {type: "notifications/removeNotification", payload: index}
                 color="error"
                 size="small"
               >

@@ -1,18 +1,19 @@
-import { useNotificationContext } from "../context/NotificationContext";
+import { useDispatch } from "react-redux";
+import { addNotification } from "../store/slices/notificationSlice";
 
 const VolunteerProfile = () => {
-  const { addNotification } = useNotificationContext();
+  const dispatch = useDispatch();
 
   const handleAddProfile = () => {
-    addNotification("Profile added");
+    dispatch(addNotification("Profile added"));
   };
 
   const handleEditProfile = () => {
-    addNotification("Profile edited");
+    dispatch(addNotification("Profile edited"));
   };
 
   const handleDeleteProfile = () => {
-    addNotification("Profile deleted");
+    dispatch(addNotification("Profile deleted"));
   };
 
   return (
